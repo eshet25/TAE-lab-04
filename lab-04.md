@@ -458,3 +458,40 @@ labs(
 ```
 
 ![](lab-04_files/figure-gfm/filter-plot-for-Texas-only-1.png)<!-- -->
+
+Mitch Hedberg’s joke does seem to hold in Texas, since most Denny’s and
+Laquintas appear to be clustered all together.
+
+### Exercise 13
+
+``` r
+ggplot (dn_lq,aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point(alpha = 0.6, size = 1) +
+  annotation_borders (color = "gray50") +
+  coord_map("ortho", orientation = c(30, -100,0), xlim = c(-170,-30),ylim = c(10,70))+
+labs(
+    title = "Denny's and La Quinta Locations in the Western Hemisphere",
+    x = "Longitude",
+    y = "Latitude",
+    color = "Establishment"
+  ) +
+  theme_bw()
+```
+
+    ## Warning: Duplicated aesthetics after name standardisation: colour
+
+![](lab-04_files/figure-gfm/recreate-map-plot-1.png)<!-- -->
+
+``` r
+#annotation_borders() means to draw outlines, so that the points aren't just floating around.
+#coord_map controls the overall curve of the Earth and how we project it to the plot
+#ortho is orthographic projection, which makes the earth look like a sort of viewed from above, and then we put the approximate coordinates for the western hemi.
+```
+
+\*Yikes! That definitely didn’t go as planned. :/ Navigating \#13 turned
+out harder than I anticipated. I’m not sure how to display NA values
+instead of La Quinta.
