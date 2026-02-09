@@ -14,27 +14,36 @@ library(dsbox)
 
 *Install dsbox first
 ```{r install-dsbox}
-install.packages("devtools")
-devtools::install_github("tidyverse/dsbox")
+#manually downloaded and opened the two datasets.
 ```
 
 ```{r load-data, message = FALSE}
 states <- read_csv("data/states.csv")
 ```
 
+```{r assign-shorter-values-for-datasets }
+dn <- dennys
+lq <- laquinta
+```
+
+
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r dennys-dimensions}
+nrow(dn)
+ncol(dn)
+```
+
+The Dennys dataset contains `r nrow(dn)` and `r ncol(dn)` columns. The rows represent a Denny's restaurant the data contains. The variables are address, city, state, zip (code), longitude, and latitude. 
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r laquinta-dimensions}
+nrow(lq)
+ncol(lq)
+```
+
+The Laquinta dataset contains `r nrow(lq)` and `r ncol(lq)` columns. The rows represent a Laquinta hotel the data contains. The variables are address, city, state, zip (code), longitude, and latitude (same as the dennys' dataset). 
 
 ### Exercise 3
 
