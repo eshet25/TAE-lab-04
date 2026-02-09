@@ -69,16 +69,67 @@ However, I wasn't able to find a specific link that shows the different Denny's 
 
 ### Exercise 4
 
+The first idea I had was to look at the latitude and longitude data and filter out the places that would be outside of the U.S. But then, I took a brief look at the dennys dataset, and it looks like most of the abbreviations under the column "state" were US states. So, I thought maybe looking at what distinct states are included in the data will let me know whether we have stores outside the US (at least in the context of our data). 
 
+So, I would use a function to list all the unique values that are included in the "state" column of our data, and also maybe see the counts of the distinct values as well. If the output shows all states that are US states, I would think the data only contans US locations. 
 
 ### Exercise 5
 
+```{r filter-states-outisde-us-dennys}
+dn %>%
+  filter(!(state %in% states$abbreviation))
+#Filter for states that are not in states$abbreviation
+```
 
+As I suspected, there are no US locations for Denny's in this dataset.
 
 ### Exercise 6
 
+```{r add-country-variable-to-dennys}
+dn %>%
+  mutate(country = "United States")
+#Mutate for new variable and set all observations equal to "United States".
+#We don’t need to tell R how many times to repeat the character string “United States” to fill in the data for all observations, R takes care of that automatically.
+```
 
+```{r save-the-new-variable}
+dn <- dn %>%
+  mutate(country = "United States")
+```
 
- 
-Add exercise headings as needed.
+### Exercise 7
 
+```{r filter-states-outisde-us-laquinta}
+lq %>%
+  filter(!(state %in% states$abbreviation))
+```
+
+There are 14 locations of Laquinta outside of the US in this dataset. After searching up the abbreviations,here are the locations:
+
+Mexico: AG (Aguascalientes), QR (Quintana Roo), CH (Chihuahua), NL (Nuevo León), VE	(Veracruz), PU	(Puebla) & SL	(San Luis Potosí).
+
+Colombia: ANT (Antioquia)
+
+Canada: ON (Ontario), BC (British Columbia).
+
+Honduras: FM (Francisco Morazán).
+
+### Exercise 8
+
+```{r add-country-variable-for-laquinta}
+lq <- lq %>%
+  mutate(country = case_when(
+    state %in% state.abb ~ "United States",
+    state %in% c("ON", "BC") ~ "Canada",
+    state == "ANT" ~ "Colombia",
+    state == "FM" ~ "Honduras",
+    state %in% c("AG", "QR", "CH", "NL", "VE", "PU", "SL") ~ "Mexico"
+  ))
+```
+
+```{r only-US-locations-for-laquinta}
+lq <- lq %>%
+  filter(country == "United States")
+```
+
+The lq dataset now has `r nrow(lq)` rows after filtering only US locations. 
