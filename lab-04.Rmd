@@ -273,6 +273,12 @@ labs(
 Mitch Hedberg's joke does seem to hold in Texas, since most Denny's and Laquintas appear to be clustered all together. 
 
 ### Exercise 13
+
+```{r load-packages-for-globe-plot}
+library(ggplot2)
+library(mapproj)
+```
+
 ```{r recreate-map-plot}
 ggplot (dn_lq,aes(
   x = longitude,

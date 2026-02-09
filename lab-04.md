@@ -465,6 +465,20 @@ Laquintas appear to be clustered all together.
 ### Exercise 13
 
 ``` r
+library(ggplot2)
+library(mapproj)
+```
+
+    ## Loading required package: maps
+
+    ## 
+    ## Attaching package: 'maps'
+
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     map
+
+``` r
 ggplot (dn_lq,aes(
   x = longitude,
   y = latitude,
