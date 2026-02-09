@@ -324,3 +324,86 @@ lq_count_states %>%
     ## # ℹ 38 more rows
 
 Maine has the least number of Laquinta locations, with only 1.
+
+### Exercise 10
+
+``` r
+dn_count_states <- dn_count_states %>%
+  mutate (dennys_per_1000_sq_miles = n / (area/1000))
+dn_count_states %>%
+  arrange(desc(dennys_per_1000_sq_miles))
+```
+
+    ## # A tibble: 51 × 5
+    ##    state     n name                     area dennys_per_1000_sq_miles
+    ##    <chr> <int> <chr>                   <dbl>                    <dbl>
+    ##  1 DC        2 District of Columbia     68.3                   29.3  
+    ##  2 RI        5 Rhode Island           1545.                     3.24 
+    ##  3 CA      403 California           163695.                     2.46 
+    ##  4 CT       12 Connecticut            5543.                     2.16 
+    ##  5 FL      140 Florida               65758.                     2.13 
+    ##  6 MD       26 Maryland              12406.                     2.10 
+    ##  7 NJ       10 New Jersey             8723.                     1.15 
+    ##  8 NY       56 New York              54555.                     1.03 
+    ##  9 IN       37 Indiana               36420.                     1.02 
+    ## 10 OH       44 Ohio                  44826.                     0.982
+    ## # ℹ 41 more rows
+
+DC has the most Denny’s locations per thousand sq miles, with 29.3, with
+Rhode Island as second place but with only 3.24.
+
+``` r
+lq_count_states <- lq_count_states %>%
+  mutate (laquintas_per_1000_sq_miles = n / (area/1000))
+lq_count_states %>%
+  arrange(desc(laquintas_per_1000_sq_miles))
+```
+
+    ## # A tibble: 48 × 5
+    ##    state     n name             area laquintas_per_1000_sq_miles
+    ##    <chr> <int> <chr>           <dbl>                       <dbl>
+    ##  1 RI        2 Rhode Island    1545.                       1.29 
+    ##  2 FL       74 Florida        65758.                       1.13 
+    ##  3 CT        6 Connecticut     5543.                       1.08 
+    ##  4 MD       13 Maryland       12406.                       1.05 
+    ##  5 TX      237 Texas         268596.                       0.882
+    ##  6 TN       30 Tennessee      42144.                       0.712
+    ##  7 GA       41 Georgia        59425.                       0.690
+    ##  8 NJ        5 New Jersey      8723.                       0.573
+    ##  9 MA        6 Massachusetts  10554.                       0.568
+    ## 10 LA       28 Louisiana      52378.                       0.535
+    ## # ℹ 38 more rows
+
+For Laquinta, Rhode island has the most per thousand sq miles, but only
+1.29.
+
+### Exercise 11
+
+``` r
+dn <- dn %>%
+  mutate(establishment = "Denny's")
+lq <- lq %>%
+  mutate(establishment = "La Quinta")
+```
+
+``` r
+dn_lq <- bind_rows(dn, lq)
+```
+
+``` r
+ggplot(dn_lq, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point() +
+labs(
+  title = "Location of Denny's and La Quinta Establishments",
+  x = "Longitude",
+  y = "Latitude",
+  color = "Establishment",
+) +
+   theme_bw()
+```
+
+![](lab-04_files/figure-gfm/plot-locations-of-the-two-establishments-1.png)<!-- -->

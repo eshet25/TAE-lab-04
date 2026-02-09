@@ -178,3 +178,50 @@ Maine has the least number of Laquinta locations, with only 1.
 
 ### Exercise 10
 
+```{r most-dennys-per-thousand-square-miles}
+dn_count_states <- dn_count_states %>%
+  mutate (dennys_per_1000_sq_miles = n / (area/1000))
+dn_count_states %>%
+  arrange(desc(dennys_per_1000_sq_miles))
+```
+
+DC has the most Denny's locations per thousand sq miles, with 29.3, with Rhode Island as second place but with only 3.24. 
+
+```{r most-laquintas-per-thousand-square-miles}
+lq_count_states <- lq_count_states %>%
+  mutate (laquintas_per_1000_sq_miles = n / (area/1000))
+lq_count_states %>%
+  arrange(desc(laquintas_per_1000_sq_miles))
+```
+
+For Laquinta, Rhode island has the most per thousand sq miles, but only 1.29.
+
+### Exercise 11
+
+```{r add-identifier-variable}
+dn <- dn %>%
+  mutate(establishment = "Denny's")
+lq <- lq %>%
+  mutate(establishment = "La Quinta")
+```
+
+```{r bind-rows-to-put-them-to-single-df}
+dn_lq <- bind_rows(dn, lq)
+```
+
+```{r plot-locations-of-the-two-establishments}
+ggplot(dn_lq, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point() +
+labs(
+  title = "Location of Denny's and La Quinta Establishments",
+  x = "Longitude",
+  y = "Latitude",
+  color = "Establishment",
+) +
+   theme_bw()
+```
+
