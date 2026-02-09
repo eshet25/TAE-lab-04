@@ -64,18 +64,35 @@ dataset).
 
 ### Exercise 3
 
-…
+Laquinta hotels have locations in the following places outisde of US:
+
+North America: Canada, Mexico
+
+Asia: China
+
+Australia & the Pacific Rim: New Zealnd
+
+Europe: Georgia, Turkiye
+
+Middle East: UAE (Abu Dhabi, Dubai)
+
+South America: Colomibia, Ecuador
+
+For Denny’s, the link only shows the U.S locations. It lists “View U.S
+Locations (1257)” in the website. But our dataset contains 1643
+observations so I suspected there might be locations outisde the U.s
+that we just can’t access through the website. I did a general search on
+google, and wikipedia says, “It operates over 1,400 restaurants in the
+United States, Canada, México, Puerto Rico, and several other
+international locations.” (<https://en.wikipedia.org/wiki/Denny%27s>)
+
+However, I wasn’t able to find a specific link that shows the different
+Denny’s locations outside the U.S.
 
 ### Exercise 4
 
-…
-
 ### Exercise 5
 
-…
-
 ### Exercise 6
-
-…
 
 Add exercise headings as needed.
