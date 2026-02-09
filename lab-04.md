@@ -397,6 +397,7 @@ ggplot(dn_lq, mapping = aes(
   color = establishment
 )) +
   geom_point() +
+  scale_color_viridis_d() +
 labs(
   title = "Location of Denny's and La Quinta Establishments",
   x = "Longitude",
@@ -407,3 +408,53 @@ labs(
 ```
 
 ![](lab-04_files/figure-gfm/plot-locations-of-the-two-establishments-1.png)<!-- -->
+
+``` r
+ggplot(
+  dn_lq %>% filter(state == "NC"),
+  aes(
+    x = longitude,
+    y = latitude,
+    color = establishment
+)) +
+  geom_point(alpha = 0.7) +
+  scale_color_viridis_d() +
+labs(
+  title = "Location of Denny's and La Quinta Establishments",
+  subtitle = "In North Carolina",
+  x = "Longitude",
+  y = "Latitude",
+  color = "Establishment",
+) +
+   theme_bw()
+```
+
+![](lab-04_files/figure-gfm/filter-plot-for-NC-only-1.png)<!-- -->
+
+From the data, it doesn’t look like Mitch Hedberg’s joke holds that
+Denny’s and LaQuinta are always next to each other. We can see that
+there are significantly more Denny’s in NC than LaQuintas.
+
+### Exercise 12
+
+``` r
+ggplot(
+  dn_lq %>% filter(state == "TX"),
+  aes(
+    x = longitude,
+    y = latitude,
+    color = establishment
+)) +
+  geom_point(alpha = 0.3) +
+  scale_color_viridis_d() +
+labs(
+  title = "Location of Denny's and La Quinta Establishments",
+  subtitle = "In Texas",
+  x = "Longitude",
+  y = "Latitude",
+  color = "Establishment",
+) +
+   theme_bw()
+```
+
+![](lab-04_files/figure-gfm/filter-plot-for-Texas-only-1.png)<!-- -->
