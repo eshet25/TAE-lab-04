@@ -212,4 +212,115 @@ lq <- lq %>%
   filter(country == "United States")
 ```
 
-The lq dataset now has 895 rows after filtering only US locations.
+The laquinta (lq) dataset now has 895 rows after filtering only US
+locations.
+
+### Exercise 9
+
+``` r
+dn_count_states <- dn %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+``` r
+dn_count_states %>%
+  arrange(desc(n))
+```
+
+    ## # A tibble: 51 × 4
+    ##    state     n name            area
+    ##    <chr> <int> <chr>          <dbl>
+    ##  1 CA      403 California   163695.
+    ##  2 TX      200 Texas        268596.
+    ##  3 FL      140 Florida       65758.
+    ##  4 AZ       83 Arizona      113990.
+    ##  5 IL       56 Illinois      57914.
+    ##  6 NY       56 New York      54555.
+    ##  7 WA       49 Washington    71298.
+    ##  8 OH       44 Ohio          44826.
+    ##  9 MO       42 Missouri      69707.
+    ## 10 PA       40 Pennsylvania  46054.
+    ## # ℹ 41 more rows
+
+California has the most Denny’s locations (403), which is double the
+amount from the second state, Texas (200). This was a bit surprising,
+since the area for Texas is almost double the size of California, you’d
+think there would be more Denny’s there or at least a close number of
+locations between the two.
+
+``` r
+dn_count_states %>%
+  arrange(n)
+```
+
+    ## # A tibble: 51 × 4
+    ##    state     n name                     area
+    ##    <chr> <int> <chr>                   <dbl>
+    ##  1 DE        1 Delaware               2489. 
+    ##  2 DC        2 District of Columbia     68.3
+    ##  3 VT        2 Vermont                9616. 
+    ##  4 AK        3 Alaska               665384. 
+    ##  5 IA        3 Iowa                  56273. 
+    ##  6 NH        3 New Hampshire          9349. 
+    ##  7 SD        3 South Dakota          77116. 
+    ##  8 WV        3 West Virginia         24230. 
+    ##  9 LA        4 Louisiana             52378. 
+    ## 10 MT        4 Montana              147040. 
+    ## # ℹ 41 more rows
+
+Delaware is the state that has the least amount of Denny’s locations,
+with only 1.
+
+``` r
+lq_count_states <- lq %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+``` r
+lq_count_states %>%
+  arrange(desc(n))
+```
+
+    ## # A tibble: 48 × 4
+    ##    state     n name          area
+    ##    <chr> <int> <chr>        <dbl>
+    ##  1 TX      237 Texas      268596.
+    ##  2 FL       74 Florida     65758.
+    ##  3 CA       56 California 163695.
+    ##  4 GA       41 Georgia     59425.
+    ##  5 TN       30 Tennessee   42144.
+    ##  6 OK       29 Oklahoma    69899.
+    ##  7 LA       28 Louisiana   52378.
+    ##  8 CO       27 Colorado   104094.
+    ##  9 NM       19 New Mexico 121590.
+    ## 10 NY       19 New York    54555.
+    ## # ℹ 38 more rows
+
+Texas has the most Laquinta locations with 237. This wasn’t very
+surprising. What was surprising was the total amount, compared to the
+states following up. After Texas, we see that the number quickly drops
+below 100 for the other states.
+
+``` r
+lq_count_states %>%
+  arrange(n)
+```
+
+    ## # A tibble: 48 × 4
+    ##    state     n name             area
+    ##    <chr> <int> <chr>           <dbl>
+    ##  1 ME        1 Maine          35380.
+    ##  2 AK        2 Alaska        665384.
+    ##  3 NH        2 New Hampshire   9349.
+    ##  4 RI        2 Rhode Island    1545.
+    ##  5 SD        2 South Dakota   77116.
+    ##  6 VT        2 Vermont         9616.
+    ##  7 WV        3 West Virginia  24230.
+    ##  8 WY        3 Wyoming        97813.
+    ##  9 IA        4 Iowa           56273.
+    ## 10 MI        4 Michigan       96714.
+    ## # ℹ 38 more rows
+
+Maine has the least number of Laquinta locations, with only 1.

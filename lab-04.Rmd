@@ -132,4 +132,49 @@ lq <- lq %>%
   filter(country == "United States")
 ```
 
-The lq dataset now has `r nrow(lq)` rows after filtering only US locations. 
+The laquinta (lq) dataset now has `r nrow(lq)` rows after filtering only US locations. 
+
+### Exercise 9
+
+```{r dennys-states-count}
+dn_count_states <- dn %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+```{r most-states}
+dn_count_states %>%
+  arrange(desc(n))
+```
+
+California has the most Denny's locations (403), which is double the amount from the second state, Texas (200). This was a bit surprising, since the area for Texas is almost double the size of California, you'd think there would be more Denny's there or at least a close number of locations between the two. 
+
+```{r least-states}
+dn_count_states %>%
+  arrange(n)
+```
+
+Delaware is the state that has the least amount of Denny's locations, with only 1. 
+
+```{r laquinta-states-count}
+lq_count_states <- lq %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+```{r lq-most-states}
+lq_count_states %>%
+  arrange(desc(n))
+```
+
+Texas has the most Laquinta locations with 237. This wasn't very surprising. What was surprising was the total amount, compared to the states following up. After Texas, we see that the number quickly drops below 100 for the other states. 
+
+```{r lq-least-states}
+lq_count_states %>%
+  arrange(n)
+```
+
+Maine has the least number of Laquinta locations, with only 1. 
+
+### Exercise 10
+
